@@ -27,6 +27,7 @@ var books []Book
 
 func GetAllBooks(router *mux.Router) {
 	router.HandleFunc("/get_json", controllers.Get_json).Methods("GET")
+	router.HandleFunc("/get_all_dbData", controllers.All_data).Methods("GET")
 	// router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 	// 	w.Header().Set("Content-Type", "application/json")
 
