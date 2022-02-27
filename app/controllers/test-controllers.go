@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/alirezakargar1380/book-store-api-golang/app/model"
+	"github.com/alirezakargar1380/book-store-api-golang/app/types"
 )
 
 type User struct {
@@ -38,4 +39,25 @@ func All_data(w http.ResponseWriter, r *http.Request) {
 	res, _ := json.Marshal(newBooks)
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(res)
+}
+
+func TestJson(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	m := map[string]types.TestJson{
+		"one": {
+			Num: 1,
+		},
+		"tow": {
+			Num: 1,
+		},
+	}
+
+	fmt.Println(m)
+	js, err := json.Marshal(m)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(js)
+	w.Write(js)
 }

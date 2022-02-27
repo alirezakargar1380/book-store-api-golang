@@ -28,6 +28,7 @@ var books []Book
 func GetAllBooks(router *mux.Router) {
 	router.HandleFunc("/get_json", controllers.Get_json).Methods("GET")
 	router.HandleFunc("/get_all_dbData", controllers.All_data).Methods("GET")
+	router.HandleFunc("/test_json", controllers.TestJson).Methods("GET")
 	// router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 	// 	w.Header().Set("Content-Type", "application/json")
 
@@ -37,24 +38,24 @@ func GetAllBooks(router *mux.Router) {
 	// 	// profile := Profile{"Alex", []string{"snowboarding", "programming"}}
 	// 	// js, err := json.Marshal(profile)
 
-	// 	// m := map[string]User{
-	// 	// 	// "o": 1,
-	// 	// 	"one": {
-	// 	// 		Num: 1,
-	// 	// 	},
-	// 	// 	"tow": {
-	// 	// 		Num: 1,
-	// 	// 	},
-	// 	// }
+	// m := map[string]User{
+	// 	// "o": 1,
+	// 	"one": {
+	// 		Num: 1,
+	// 	},
+	// 	"tow": {
+	// 		Num: 1,
+	// 	},
+	// }
 
-	// 	// js, err := json.Marshal(m)
+	// js, err := json.Marshal(m)
 
-	// 	// if err != nil {
-	// 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
-	// 	// 	return
-	// 	// }
-	// 	// json.NewEncoder(w).Encode(user)
-	// 	// w.Write(js)
+	// if err != nil {
+	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
+	// 	return
+	// }
+	// json.NewEncoder(w).Encode(user)
+	// w.Write(js)
 
 	// 	books = append(books, Book{
 	// 		Id:   "1",
