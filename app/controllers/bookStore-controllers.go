@@ -10,10 +10,20 @@ import (
 
 var NewBool model.Book
 
+type Response struct {
+	Status bool
+	Data   []model.Book
+}
+
 func All_data(w http.ResponseWriter, r *http.Request) {
 	newBooks := model.GetAllBooks()
-	res, _ := json.Marshal(newBooks)
+	dd := Response{
+		Status: true,
+		Data:   newBooks,
+	}
+
 	w.Header().Set("Content-Type", "application/json")
+	res, _ := json.Marshal(dd)
 	w.Write(res)
 }
 
