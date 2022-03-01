@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -63,6 +64,38 @@ func DeleteBookById(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	rrr := make(map[string]interface{})
 	rrr["status"] = "success"
+	fmt.Println(rrr)
 	res, _ := json.Marshal(rrr)
+	w.Write(res)
+}
+
+func UpdateBookById(w http.ResponseWriter, r *http.Request) {
+	updateBook := &model.Book{}
+	utils.ParseBody(r, updateBook)
+	vars := mux.Vars(r)
+	var bookId string = vars["book"]
+	ID, err := strconv.ParseInt(bookId, 0, 0)
+	if err != nil {
+		panic(err)
+	}
+	bookDetail, db := model.GetBookById(ID)
+
+	bookDetail.Name = updateBook.Name
+	db.Save(&bookDetail)
+
+	ress(w, fmt.Sprint("book was updated with id -> ", ID), bookDetail)
+}
+
+func ress(w http.ResponseWriter, message string, uD *model.Book) {
+	responseData := make(map[string]interface{})
+	responseData["status"] = "success"
+	responseData["message"] = message
+	// res, err := json.Marshal(uD)
+	responseData["data"] = uD
+	res, err := json.Marshal(responseData)
+	if err != nil {
+		panic(err)
+	}
+	w.Header().Set("Content-Type", "application/json")
 	w.Write(res)
 }

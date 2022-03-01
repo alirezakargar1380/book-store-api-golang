@@ -31,6 +31,7 @@ func GetAllBooks(router *mux.Router) {
 	router.HandleFunc("/cccccc", controllers.CreateBook).Methods("POST")
 	router.HandleFunc("/get_book_by_id/{book}", controllers.GetBookById).Methods("POST")
 	router.HandleFunc("/delete_book_by_id/{book}", controllers.DeleteBookById).Methods("DELETE")
+	router.HandleFunc("/update_book_by_id/{book}", controllers.UpdateBookById).Methods("PATCH")
 
 	// router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 	// 	w.Header().Set("Content-Type", "application/json")
