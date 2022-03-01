@@ -20,7 +20,6 @@ func init() {
 }
 
 func (b *Book) CreateBook() *Book {
-	// db.NewRecord(b)
 	db.Create(&b)
 	return b
 }
@@ -30,3 +29,14 @@ func GetAllBooks() []Book {
 	db.Find(&Books)
 	return Books
 }
+
+func GetBookById(ID int64) (*Book, *gorm.DB) {
+	var getBook Book
+	db := db.Where("ID=?", ID).Find(&getBook)
+	return &getBook, db
+}
+
+// func DeleteBookById(ID) Book {
+// 	var book Book
+// 	db.Where("ID=?", )
+// }
